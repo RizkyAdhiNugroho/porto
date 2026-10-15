@@ -328,7 +328,7 @@ a { color: inherit; }
       <div class="kpi-table">
         <div class="kpi-head"><span>Component</span><span>Achievement</span><span class="num">Score</span><span class="num">vs <span id="otherYr">2025</span></span></div>
         <div id="kpiRows"></div>
-        <div class="scale-note"><span class="legend-target"><i></i> 100% target</span><span>Bars drawn on a 0–140% scale</span></div>
+        <div class="scale-note"><span class="legend-target"><i></i> 100% target</span><span>Full bar = 125% maximum achievement</span></div>
       </div>
       <aside class="overall" aria-live="polite">
         <span class="label">Overall score <span id="ovYr">2026</span></span>
@@ -339,7 +339,7 @@ a { color: inherit; }
         </svg>
         <span class="big" id="ovBig">119.5%</span>
         <span class="cmp" id="ovCmp"></span>
-        <p class="formula">Ring drawn on a 0–140% scale; the white tick marks 100%.</p>
+        <p class="formula">Full ring = 125% maximum achievement; the white tick marks the 100% target.</p>
       </aside>
     </div>
   </section>
@@ -439,7 +439,7 @@ a { color: inherit; }
     { key: "qual",  name: "Project quality",     note: "Quality control & user rating",   w: 26, v: { 2025: 121.31, 2026: 119.85 } },
   ];
   const OVERALL = { 2025: 116.89, 2026: 119.54 };
-  const MAX = 140;
+  const MAX = 125;
   const overall = (y) => OVERALL[y];
   const fmt = (n, d = 1) => n.toFixed(d) + "%";
 
