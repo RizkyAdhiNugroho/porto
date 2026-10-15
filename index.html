@@ -129,7 +129,7 @@ a { color: inherit; }
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--sheet); }
 .perf { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 22px; align-items: start; }
 .kpi-table { display: flex; flex-direction: column; min-width: 0; }
-.kpi-head, .kpi-row { display: grid; grid-template-columns: minmax(0, 1.25fr) 52px minmax(0, 2fr) 74px 64px; gap: 12px; align-items: center; }
+.kpi-head, .kpi-row { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 2fr) 74px 64px; gap: 12px; align-items: center; }
 .kpi-head { font-family: var(--font-data); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .kpi-row { padding: 13px 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
 .kpi-row .name { font-weight: 600; font-size: 14.5px; line-height: 1.3; }
@@ -326,7 +326,7 @@ a { color: inherit; }
     </div>
     <div class="perf">
       <div class="kpi-table">
-        <div class="kpi-head"><span>Component</span><span class="num">Weight</span><span>Achievement</span><span class="num">Score</span><span class="num">vs <span id="otherYr">2025</span></span></div>
+        <div class="kpi-head"><span>Component</span><span>Achievement</span><span class="num">Score</span><span class="num">vs <span id="otherYr">2025</span></span></div>
         <div id="kpiRows"></div>
         <div class="scale-note"><span class="legend-target"><i></i> 100% target</span><span>Bars drawn on a 0–140% scale</span></div>
       </div>
@@ -339,10 +339,10 @@ a { color: inherit; }
         </svg>
         <span class="big" id="ovBig">119.5%</span>
         <span class="cmp" id="ovCmp"></span>
-        <p class="formula">Overall = Σ (weight × achievement)<br>Ring drawn on a 0–140% scale; the white tick marks 100%.</p>
+        <p class="formula">Official weighted result of the annual review.<br>Ring drawn on a 0–140% scale; the white tick marks 100%.</p>
       </aside>
     </div>
-    <p class="fineprint">Source: company annual performance review. 2026 document completeness and balancing factor are carried over from 2025.</p>
+    <p class="fineprint">Source: company annual performance review. 2026 document completeness is carried over from 2025.</p>
   </section>
 
   <!-- PROJECTS -->
@@ -438,17 +438,17 @@ a { color: inherit; }
     { key: "close", name: "Project closing",     note: "Projects closed on schedule",     w: 8,  v: { 2025: 105,    2026: 118 } },
     { key: "doc",   name: "Document completeness", note: "Full delivery document set",   w: 11, v: { 2025: 110.69, 2026: 110.69 } },
     { key: "qual",  name: "Project quality",     note: "Quality control & user rating",   w: 26, v: { 2025: 121.31, 2026: 119.85 } },
-    { key: "bal",   name: "Balancing factor",    note: "Workload & complexity balance",   w: 25, v: { 2025: 125,    2026: 125 } },
   ];
+  // Official overall scores from the annual review (include a component not shown on this page)
+  const OVERALL = { 2025: 116.89, 2026: 119.54 };
   const MAX = 140;
-  const overall = (y) => KPI.reduce((s, k) => s + k.w * k.v[y] / 100, 0);
+  const overall = (y) => OVERALL[y];
   const fmt = (n, d = 1) => n.toFixed(d) + "%";
 
   const rows = document.getElementById("kpiRows");
   rows.innerHTML = KPI.map(k => `
     <div class="kpi-row" data-k="${k.key}">
       <span class="name">${k.name}<small>${k.note}</small></span>
-      <span class="num w">${k.w}%</span>
       <span class="track" aria-hidden="true"><span class="fill"></span><span class="target" style="left:${100 / MAX * 100}%"></span></span>
       <span class="num val"></span>
       <span class="delta"></span>
