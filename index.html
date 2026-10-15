@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap">
 <style>
-/* Layout: black frame + white rounded sheets, carried over from the 2023/2026 deck; tab bar on the frame */
+/* Layout: black frame + white rounded sheets; tab bar on the frame */
 :root {
   --frame: #141414;
   --frame-ink: #F5F5F2;
@@ -339,10 +339,9 @@ a { color: inherit; }
         </svg>
         <span class="big" id="ovBig">119.5%</span>
         <span class="cmp" id="ovCmp"></span>
-        <p class="formula">Official weighted result of the annual review.<br>Ring drawn on a 0–140% scale; the white tick marks 100%.</p>
+        <p class="formula">Ring drawn on a 0–140% scale; the white tick marks 100%.</p>
       </aside>
     </div>
-    <p class="fineprint">Source: company annual performance review. 2026 document completeness is carried over from 2025.</p>
   </section>
 
   <!-- PROJECTS -->
@@ -439,7 +438,6 @@ a { color: inherit; }
     { key: "doc",   name: "Document completeness", note: "Full delivery document set",   w: 11, v: { 2025: 110.69, 2026: 110.69 } },
     { key: "qual",  name: "Project quality",     note: "Quality control & user rating",   w: 26, v: { 2025: 121.31, 2026: 119.85 } },
   ];
-  // Official overall scores from the annual review (include a component not shown on this page)
   const OVERALL = { 2025: 116.89, 2026: 119.54 };
   const MAX = 140;
   const overall = (y) => OVERALL[y];
